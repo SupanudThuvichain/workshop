@@ -1,0 +1,49 @@
+import numpy as np
+
+student_data = [
+    ['644244112', 'นายชวกร  เมืองถาวร'],
+    ['644244115', 'นายญาณวุฒิ  บริบูรณ์'],
+    ['674244101', 'นางสาวกนกวรรณ  พรหมเทพ'],
+    ['674244102', 'นางสาวเกศินี  รุ่งเจริญดี'],
+    ['674244103', 'นางสาวจิดาภา  ยิ้มย่อง'],
+    ['674244104', 'นางสาวณาตาฌา  เรืองชัย'],
+    ['674244105', 'นางสาวณิชนัทนท์  แสงทอง']
+]
+
+midterm = np.array([[10], [9], [5], [10], [10], [10], [7]])
+final_score = np.array([[60], [55], [49], [70], [66], [59], [70]])
+
+# คิดเกรด A = 80, B+ = 75, B = 70, C+ = 65, C = 60, D+ = 55, D = 50, E <= 49
+for student in student_data:
+    print(f"รหัส: {student[0]}, ชื่อนามสกุล: {student[1]}")
+
+# รวมข้อมูลจาก midterm และ final_score
+student_np = np.array(student_data)
+
+# เพิ่มคอลัมน์ midterm และ final_score
+student_np = np.hstack((student_np, midterm, final_score))
+
+print(student_np)
+
+for i in range(len(student_data)):
+    score = midterm[i][0] + final_score[i][0] 
+    print(f"Score for student {student_data[i][0]} is: {score}")
+
+    if score >= 80:
+        grade = 'A'
+    elif score >= 75:
+        grade = 'B+'
+    elif score >= 70:
+        grade = 'B'
+    elif score >= 65:
+        grade = 'C+'
+    elif score >= 60:
+        grade = 'C'
+    elif score >= 55:
+        grade = 'D+'
+    elif score >= 50:
+        grade = 'D'
+    else:
+        grade = 'E'
+    
+    print(f"Grade for student {student_data[i][0]} is: {grade}")
